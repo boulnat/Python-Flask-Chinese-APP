@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Python Flask Bucket List App</title>
+ 
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+ 
+ 
+</head>
+ 
+<body>
+ 
+    <div class="container">
+        <div class="header">
+            <nav>
+               
+            </nav>
+        </div>
+ 
+        <div class="jumbotron">
+            <h1>Chinese APP - 中国</h1>
+            <h2>Please Log In</h2>
+            <p class="lead"></p>
+            {% if session['logged_in'] %}
+                <p>You're logged in already!</p>
+            {% else %}
+            <form class="from-signin" action="/login" method="POST">
+                <label for="inputName" class="sr-only">Name</label>
+                <input type="text" name="username" class="form-control" placeholder="Username" >
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Password" ></br>
+                
+                <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Sign up</button>
+            </form>
+            {% endif %}
+            <p>
+            {% if error %}
+                <p class="error"><strong>Error:</strong> {{ error }}
+            {% endif %}
+            </p>
+        </div>
+ 
+    </div>
+</body>
+ 
+</html>

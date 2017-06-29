@@ -4,16 +4,31 @@ Spyder Editor
 
 This is a temporary script file.
 """
-from flask import Flask, render_template
+from flask import Flask, flash, render_template, request, session
+import os
+
 app = Flask(__name__)
 
 @app.route("/")
 def main():
-    return render_template('index.html')
+    if not session.get("logged_in"):
+        return render_template("login.html")
+    else:
+        return render_template('index.html')
 
-@app.route("/logIn")
-def logIn():
-    return render_template('login.html')
+@app.route("/login", methods=["POST"])
+def login():
+    if request.method == 'POST':
+        if request.form["username"] == "boulnat" or request.form["password"] == "boulnat":
+            session["logged_in"] = True 
+        else:
+           flash("wrong")
+        return main()          
+
+@app.route("/logout")
+def logout():
+    session['logged_in'] = False
+    return main()
 
 @app.route("/singUp")
 def signUp():
@@ -36,4 +51,5 @@ def statistiques():
     return render_template('statistiques.html')
 
 if __name__ == "__main__":
+    app.secret_key = os.urandom(12)
     app.run(debug=True)    

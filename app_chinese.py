@@ -10,20 +10,21 @@ import os
 app = Flask(__name__)
 
 @app.route("/")
-def main():
+def main(name="Unknown"):
     if not session.get("logged_in"):
         return render_template("login.html")
     else:
-        return render_template('index.html')
+        return render_template('index.html', name=name)
 
 @app.route("/login", methods=["POST"])
 def login():
     if request.method == 'POST':
         if request.form["username"] == "boulnat" or request.form["password"] == "boulnat":
-            session["logged_in"] = True 
+            session["logged_in"] = True
+            loggedInName = "boulnat"
         else:
-           flash("wrong")
-        return main()          
+             print ("error")
+        return main(name=loggedInName)          
 
 @app.route("/logout")
 def logout():

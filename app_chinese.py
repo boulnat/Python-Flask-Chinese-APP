@@ -5,9 +5,12 @@ Spyder Editor
 This is a temporary script file.
 """
 from flask import Flask, flash, render_template, request, session
-import os
+import os, random
 
 app = Flask(__name__)
+app.secret_key = os.urandom(12)
+
+tab=[]
 
 @app.route("/")
 def main(name="Unknown"):
@@ -31,13 +34,21 @@ def logout():
     session['logged_in'] = False
     return main()
 
-@app.route("/singUp")
-def signUp():
-    return render_template('signup.html')
-
-@app.route('/initiales')
-def initiales():
-    return render_template('initiales.html')
+@app.route('/initiales', methods=['GET', 'POST'])
+def initiales(valeur=None, result=None, vue=True):
+    tab=random.sample(range(100),4)
+    count=len(tab)
+    tabResult=[]
+    i=0
+    if request.method == 'POST':
+        while i < count-1:
+            if request.form[str(tab[i])] == tab[i]:
+                tabResult.append("ok")
+            else:
+                tabResult.append(goodRequest)
+            i+=1
+        return render_template("initiales.html",result=tabResult,vue=False) 
+    return render_template('initiales.html',valeur=tab,vue=True)
 
 @app.route('/finales')
 def finales():
@@ -52,5 +63,4 @@ def statistiques():
     return render_template('statistiques.html')
 
 if __name__ == "__main__":
-    app.secret_key = os.urandom(12)
     app.run(debug=True)    

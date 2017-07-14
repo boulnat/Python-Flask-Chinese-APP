@@ -15,15 +15,9 @@
     <div class="container">
         {% include "header.html" %} 
         <div class="jumbotron">
-                <form class="from-signin" action="/initiales" method="POST">
-                {% for word in valeur %}
-                    <label for={{ word }} class="sr-only">{{ word }}</label>
-                    <input type="text" name={{ word }} class="form-control" placeholder={{ word }}>
-
-                    </br>
+                {% for key, word in result.items() %}
+					<p>key:{{ key }} | word:{{ word }} </p>
                 {% endfor %}
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Validate</button>
-                </form>
             <p class="lead"></p>
             </p>
         </div>

@@ -6,14 +6,8 @@ Boulet Nathan
 from flask import Flask, flash, render_template, request, session, redirect, url_for
 import os, random, time, pygame
 
-pygame.mixer.init()
-path = "E:\MUSIC\pinyin"
-#path = os.path.join(os.getcwd(),os.listdir(os.getcwd())[1])
-initial_tab = [("b","p"),("m","f","n","l"),("d","t"),("z","c","s"),("zh","ch","sh","r"),("j","q","x"),("g","k","h")]
-
 class pinyin:
-    def __init__(self,path = "E:\MUSIC\pinyin"):
-        print("in class pinyin")
+    def __init__(self,path = "static/music"):
         self.path = path
         self.extension = ".mp3"
         self.listPinyin = [pinyin[:-4] for pinyin in os.listdir(self.path)]
@@ -45,30 +39,13 @@ class initialesQuestions:
     
 app = Flask(__name__)
 app.secret_key = os.urandom(12)
-"""
-class questions:
-    def __init__(self, number)
-        self.number = number
-    
-    def setNumber(self, number):
-        self.number = number
-        
-    def getNumber(self):
-        return self.number
 
-class createInitiales(questions):
-    def __init__(self, number):
-        questions.__init__(self, number)
-        
-    def numberEx():
-        return random.sample(range(100),self.getNumber())      #initialise des valeurs pour l'exercices
-"""
 @app.route("/")
 def main():
     return render_template("index.html")
     
 @app.route('/initiales', methods=['POST','GET'])
-def initiales(valeur=None, result=None, vue=True):
+def initiales(valeur=None, result=None, vue=True,musicFiles=None):
     bonne_reponse = 0
     NUM_OF_EX = 5
     
@@ -93,7 +70,7 @@ def initiales(valeur=None, result=None, vue=True):
         print(bonne_reponse)
         return render_template("answers.html",result=request.form)
        
-    return render_template('initiales.html',valeur=myInitiales.showInitiales())
+    return render_template('initiales.html',valeur=myInitiales.showInitiales(),musicFiles=myPinyinPath)
 
 @app.route("/answers")
 def answers():

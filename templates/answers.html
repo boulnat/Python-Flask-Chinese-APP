@@ -15,9 +15,19 @@
     <div class="container">
         {% include "header.html" %} 
         <div class="jumbotron">
-                {% for key, word in result.items() %}
-					<p>key:{{ key }} | word:{{ word }} </p>
+                {% for key, word in corection.items() %}
+					<p>Question: {{ key }} = Reponse: {{ word }} </p>
+					<audio controls >
+						<source src="{{ musicFiles[key] }}" type="audio/mp3"/>
+					</audio>
+					{% if word != "" %}
+					<audio controls >
+						<source src="{{ musicFiles[word] }}" type="audio/mp3"/>
+					</audio>
+					{% endif %}
                 {% endfor %}
+				
+				<h2>Result: {{ result }}/{{corection|length}}</h2>
             <p class="lead"></p>
             </p>
         </div>

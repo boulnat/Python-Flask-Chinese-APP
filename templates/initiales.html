@@ -22,7 +22,7 @@
 						<source src="{{ musicFiles[i] }}" type="audio/mp3"/>
 					</audio>
 					<label for={{ valeur[i] }} class="sr-only">{{ valeur[i] }}</label>
-          <input type="text" name={{ valeur[i] }} class="form-control" placeholder={% if valeur[i] in ["zh","ch","sh"] %} {{ valeur[i][2:] }} {% else %} {{ valeur[i][1:] }} {% endif %}>
+					<input type="text" name={{ valeur[i] }} class="form-control" placeholder={% if "zh" in valeur[i] or "sh" in valeur[i] or "ch" in valeur[i] %} {{ valeur[i][2:] }} {% else %} {{ valeur[i][1:] }} {% endif %}>
 					</br>
 				{% endfor %}
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Validate</button>

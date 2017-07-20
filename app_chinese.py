@@ -3,8 +3,9 @@
 Boulet Nathan
 
 """
+
 from flask import Flask, flash, render_template, request, session, redirect, url_for
-import os, random, time, pygame
+import os, random, time
 
 class pinyin:
     def __init__(self,path = "static/music"):
@@ -12,10 +13,12 @@ class pinyin:
         self.extension = ".mp3"
         self.listPinyin = [pinyin[:-4] for pinyin in os.listdir(self.path)]
         self.randomList = self.listPinyin
-        random.shuffle(self.randomList)
         self.tabInitiales = [("b","p"),("m","f","n","l"),("d","t"),("z","c","s"),("zh","ch","sh","r"),("j","q","x"),("g","k","h")]
         self.tableSoundPath=[]
         
+    def setRandomListPinyin(self):
+        random.shuffle(self.randomList)
+    
     def getRandomListPinyin(self, size):
         return [randomTablePinyin for randomTablePinyin in self.randomList[0:size]]
 
@@ -47,16 +50,17 @@ def main():
 @app.route('/initiales', methods=['POST','GET'])
 def initiales(valeur=None, result=None, vue=True,musicFiles=None):
     bonne_reponse = 0
-    NUM_OF_EX = 5
-    
-    myPinyin = pinyin()
-    myPinyinList = myPinyin.getRandomListPinyin(NUM_OF_EX)
-    myPinyinPath = myPinyin.getSoundPath(myPinyinList)
-    myInitiales = initialesQuestions(myPinyinList)
-    
-    #####
+    NUM_OF_EX = 2
     string_value =  []
     index=0
+
+    myPinyin.setRandomListPinyin()
+    myPinyinList = myPinyin.getRandomListPinyin(NUM_OF_EX)
+    myPinyinPath = myPinyin.getSoundPath(myPinyinList)
+    myInitiales = myPinyinList
+    
+    #####
+    
     if request.method == 'POST':
         print(request.form.to_dict())
         print(myPinyinList)
@@ -70,12 +74,14 @@ def initiales(valeur=None, result=None, vue=True,musicFiles=None):
         print(bonne_reponse)
         return render_template("answers.html",result=request.form)
        
-    return render_template('initiales.html',valeur=myInitiales.showInitiales(),musicFiles=myPinyinPath)
+    return render_template('initiales.html',valeur=myInitiales,musicFiles=myPinyinPath)
 
 @app.route("/answers")
 def answers():
+            
     return render_template("answers.html")
 
 if __name__ == "__main__":
+    myPinyin = pinyin()
     app.run(debug=True)    
 

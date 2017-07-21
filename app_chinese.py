@@ -72,6 +72,87 @@ def initiales(valeur=None, result=None, vue=True,musicFiles=None):
         return render_template("answers.html",corection=request.form,result=bonne_reponse,musicFiles=myPinyinPath)    
     return render_template('initiales.html',valeur=myInitiales,musicFiles=myPinyinPath)
 
+@app.route('/finales', methods=['POST','GET'])
+def finales(valeur=None, result=None, vue=True,musicFiles=None):
+    bonne_reponse = 0
+    NUM_OF_EX = 5
+    string_value =  []
+    index=0
+
+    myPinyin.setRandomListPinyin()
+    myPinyinList = myPinyin.getRandomListPinyin(NUM_OF_EX)
+    myPinyinPath = myPinyin.getSoundPath(myPinyinList)
+    myInitiales = myPinyinList
+
+    if request.method == 'POST':
+        myPinyinList = []
+        myPinyinPath = []
+        for question in request.form.to_dict():
+            myPinyinList.append(request.form.to_dict()[question])
+            myPinyinList.append(question)
+
+            if request.form.to_dict()[question] == question:
+                bonne_reponse+=1 #increment des bonnes répones pour le score final
+            index+=1
+            string_value=(request.form)
+        myPinyinPath = myPinyin.getSoundPathCorrection(myPinyinList)
+        return render_template("answers.html",corection=request.form,result=bonne_reponse,musicFiles=myPinyinPath)    
+    return render_template('finales.html',valeur=myInitiales,musicFiles=myPinyinPath)
+
+@app.route('/tons', methods=['POST','GET'])
+def tons(valeur=None, result=None, vue=True,musicFiles=None):
+    bonne_reponse = 0
+    NUM_OF_EX = 5
+    string_value =  []
+    index=0
+
+    myPinyin.setRandomListPinyin()
+    myPinyinList = myPinyin.getRandomListPinyin(NUM_OF_EX)
+    myPinyinPath = myPinyin.getSoundPath(myPinyinList)
+    myInitiales = myPinyinList
+
+    if request.method == 'POST':
+        myPinyinList = []
+        myPinyinPath = []
+        for question in request.form.to_dict():
+            myPinyinList.append(request.form.to_dict()[question])
+            myPinyinList.append(question)
+
+            if request.form.to_dict()[question] == question:
+                bonne_reponse+=1 #increment des bonnes répones pour le score final
+            index+=1
+            string_value=(request.form)
+        myPinyinPath = myPinyin.getSoundPathCorrection(myPinyinList)
+        return render_template("answers.html",corection=request.form,result=bonne_reponse,musicFiles=myPinyinPath)    
+    return render_template('tons.html',valeur=myInitiales,musicFiles=myPinyinPath)
+
+@app.route('/fullword', methods=['POST','GET'])
+def fullword(valeur=None, result=None, vue=True,musicFiles=None):
+    bonne_reponse = 0
+    NUM_OF_EX = 5
+    string_value =  []
+    index=0
+
+    myPinyin.setRandomListPinyin()
+    myPinyinList = myPinyin.getRandomListPinyin(NUM_OF_EX)
+    myPinyinPath = myPinyin.getSoundPath(myPinyinList)
+    myInitiales = myPinyinList
+
+    if request.method == 'POST':
+        myPinyinList = []
+        myPinyinPath = []
+        for question in request.form.to_dict():
+            myPinyinList.append(request.form.to_dict()[question])
+            myPinyinList.append(question)
+
+            if request.form.to_dict()[question] == question:
+                bonne_reponse+=1 #increment des bonnes répones pour le score final
+            index+=1
+            string_value=(request.form)
+        myPinyinPath = myPinyin.getSoundPathCorrection(myPinyinList)
+        return render_template("answers.html",corection=request.form,result=bonne_reponse,musicFiles=myPinyinPath)    
+    return render_template('fullword.html',valeur=myInitiales,musicFiles=myPinyinPath)
+
 @app.route("/answers")
 def answers(result=None):
     return render_template("answers.html")

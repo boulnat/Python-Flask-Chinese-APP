@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Python Flask Bucket List App</title>
+ 
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+ 
+ 
+</head>
+
+<body>
+    <div class="container">
+        {% include "header.html" %} 
+        <div class="jumbotron">
+                {% for key, word in corection.items() %}
+					<p>Question: {{ key }} = Reponse: {{ word }} </p>
+					<audio controls preload=none>
+						<source src="{{ musicFiles[key] }}" type="audio/mp3"/>
+					</audio>
+					{% if word != key %}
+						{% if word != '' %}
+							<audio controls preload=none>
+								<source src="{{ musicFiles[word] }}" type="audio/mp3"/>
+							</audio>
+						{% endif %}
+					{% endif %}
+                {% endfor %}
+				
+				<h2>Result: {{ result }}/{{corection|length}}</h2>
+            <p class="lead"></p>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

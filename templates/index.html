@@ -3,21 +3,14 @@
  
 <head>
     <title>Python Flask Chinese App</title>
- 
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
- 
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
- 
- 
 </head>
-{% if session['logged_in'] %}
+
 <body>
 
     <div class="container">
     {% include "header.html" %}
-    {% if name %}
-        <h1>Hello {{ name }}</h1>
-    {% endif %}
         <div class="jumbotron">
             <h2>Chinese APP - 中国</h2>
             <p class="lead"></p>
@@ -29,14 +22,15 @@
                 <h4>Initiales</h4>
                 <p>Listen from a define or random list of words and train your ear to know wich initiale the word <b>start</b> with</p>
                 <p><a class="btn btn-lg btn-success" href="initiales" role="button">Start</a></p>
-                
-                <h4>Finales</h4>
-                <p>Listen from a define or random list of words and train your ear to know wich initiale the word <b>ends</b> with</p>
+				<h4>Finales</h4>
+                <p>Listen from a define or random list of words and train your ear to know wich initiale the word <b>start</b> with</p>
                 <p><a class="btn btn-lg btn-success" href="finales" role="button">Start</a></p>
-                
-                <h4>Tons</h4>
-                <p>Listen from a define or random list of words and train your ear to know the <b>tons</b></p>
+				<h4>Tons</h4>
+                <p>Listen from a define or random list of words and train your ear to know wich initiale the word <b>start</b> with</p>
                 <p><a class="btn btn-lg btn-success" href="tons" role="button">Start</a></p>
+				<h4>HARDCORE</h4>
+                <p>Listen from a define or random list of words and train your ear to know wich initiale the word <b>start</b> with</p>
+                <p><a class="btn btn-lg btn-success" href="fullword" role="button">Start</a></p>
             </div>
         </div>
  
@@ -46,17 +40,4 @@
  
     </div>
 </body>
-{% else %}
-        <div class="jumbotron">
-            <h2>I guess you made a mistake !</h2>
-            <h2>Please log in here ...</h2>
-            </br>
-            <div class="row marketing">
-            
-            <a class="btn btn-lg btn-primary " href="/" role="button">Login</a>
-            
-            </div>
-            </p>
-        </div>
-{% endif %}
 </html>

@@ -15,7 +15,7 @@ Open a web browser and enter this url:
 
 now you should see the app 
 
-
+you can get sounds from here http://pinpinchinese.com/wp-content/uploads/audio/
 
 
 

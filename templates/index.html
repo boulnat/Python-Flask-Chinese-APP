@@ -3,34 +3,59 @@
  
 <head>
     <title>Python Flask Chinese App</title>
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="container-fluid">
     {% include "header.html" %}
-        <div class="jumbotron">
-            <h2>Chinese APP - 中国</h2>
-            <p class="lead"></p>
-            </p>
-        </div>
- 
+    <!-- <p><img src="https://techcode-germany.com/home/wp-content/uploads/2017/04/china.jpg" class="img-fluid" alt="Responsive image"></p>        
+    -->
+    </div>
+    <div class="container"> 
         <div class="row marketing">
-            <div class="col-lg-6">
-                <h4>Initiales</h4>
+            <div class="col-sm">
+                <div class="card">
+                  <div class="card-body">
+                    <h4>Initiales</h4>
+                    <p>Listen from a define or random list of words and train your ear to know wich initiale the word <b>start</b> with</p>
+                    <p><a class="btn btn-lg btn-success" href="initiales" role="button">Start</a></p>
+                  </div>
+               </div>
+	    </div>
+	    <div class="col-sm">
+              <div class="card">
+                <div class="card-body">
+	  	  <h4>Finales</h4>
+                  <p>Listen from a define or random list of words and train your ear to know wich initiale the word <b>start</b> with</p>
+                  <p><a class="btn btn-lg btn-success" href="finales" role="button">Start</a></p>
+ 	        </div>
+              </div>
+            </div>
+	    <div class="col-sm">
+              <div class="card">
+                <div class="card-body">
+	          <h4>Tons</h4>
+                  <p>Listen from a define or random list of words and train your ear to know wich initiale the word <b>start</b> with</p>
+                  <p><a class="btn btn-lg btn-success" href="tons" role="button">Start</a></p>
+                </div>
+              </div>
+ 	    </div>
+	    <div class="col-sm">		
+              <div class="card">
+                <div class="card-body">
+ 		  <h4>HARDCORE</h4>
+                  <p>Listen from a define or random list of words and train your ear to know wich initiale the word <b>start</b> with</p>
+                  <p><a class="btn btn-lg btn-success" href="fullword" role="button">Start</a></p>
+                </div>
+              </div> 	    
+            </div>
+            <div class="container">                 
+  	      <h4>translation</h4>
                 <p>Listen from a define or random list of words and train your ear to know wich initiale the word <b>start</b> with</p>
-                <p><a class="btn btn-lg btn-success" href="initiales" role="button">Start</a></p>
-				<h4>Finales</h4>
-                <p>Listen from a define or random list of words and train your ear to know wich initiale the word <b>start</b> with</p>
-                <p><a class="btn btn-lg btn-success" href="finales" role="button">Start</a></p>
-				<h4>Tons</h4>
-                <p>Listen from a define or random list of words and train your ear to know wich initiale the word <b>start</b> with</p>
-                <p><a class="btn btn-lg btn-success" href="tons" role="button">Start</a></p>
-				<h4>HARDCORE</h4>
-                <p>Listen from a define or random list of words and train your ear to know wich initiale the word <b>start</b> with</p>
-                <p><a class="btn btn-lg btn-success" href="fullword" role="button">Start</a></p>
+                <p><a class="btn btn-lg btn-success" href="translation" role="button">Start</a></p>
             </div>
         </div>
  

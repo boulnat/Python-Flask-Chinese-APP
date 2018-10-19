@@ -15,7 +15,15 @@ Open a web browser and enter this url:
 
 now you should see the app 
 
+#Sound
 you can get sounds from here http://pinpinchinese.com/wp-content/uploads/audio/
+
+#Hanzi Writer stroke
+https://chanind.github.io/hanzi-writer/docs.html
+
+#pinyin & pinyin-CEDICT
+https://cc-cedict.org/editor/editor.php
+https://pypi.org/project/pinyin/
 
 
 

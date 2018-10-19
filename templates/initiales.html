@@ -145,7 +145,7 @@
          </td>
          <td> 
            <label for={{ valeur[i] }} class="sr-only">{{ valeur[i] }}</label>
-           <input type="text" name={{ valeur[i] }} class="form-control" placeholder={% if "zh" in valeur[i] or "sh" in valeur[i] or "ch" in valeur[i] %} {{ valeur[i][2:] }} {% else %} {{ valeur[i][1:] }} {% endif %} required>
+           <input type="text" name={{ valeur[i] }} class="form-control" placeholder={% if "zh" in valeur[i] or "sh" in valeur[i] or "ch" in valeur[i] %} {{ valeur[i][2:] }} {% else %} {{ valeur[i][1:] }} {% endif %} required autocomplete="off">
          </td>
        </tr>
       {%- endfor %}

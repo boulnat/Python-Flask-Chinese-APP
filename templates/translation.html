@@ -4,9 +4,10 @@
 <head>
     <title>Python Flask Bucket List App</title>
  
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
- 
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
  
  
 </head>
@@ -14,7 +15,122 @@
 <body class="bg-dark">
     <div class="container bg-light">
         {% include "header.html" %} 
+</br>
+<div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="info" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="info">Translation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+<p>Write or copy words, sentences, text in the Form.</p>
+<p>Press Translate.</p>
+<p>Text will give you what you entered</p>
+<p>Pinyin is the data you entered translated into pinyin</p>
+<p>Vocabulary gives you all the voc from the data you entered</p>
 
+
+<table class="table" style="width:100%">
+     <thead class="thead-dark">
+     <tr>
+       <th scope="col" style="width:100%">FORM: </th>
+     </tr>
+     </thead>
+     <tbody>
+    
+ <tr>
+ <th scope="row">
+ <textarea name="text" rows="2" cols="100" placeholder="你好吗" autocomplete="off" maxlength="0"></textarea>
+</th>
+ </tr>
+ </tbody>
+     </table>
+<div class="float-right">
+              <button type="button" class="btn btn-lg btn-info">INFO</button>
+              <button  type="button" class="btn btn-lg btn-warning">Translate</button>
+ </div>
+
+</br>
+<table class="table" style="width:100%">
+     <thead class="thead-dark">
+     <tr>
+       <th scope="col" style="width:100%">TEXT: </th>
+     </tr>
+     </thead>
+     <tbody>
+<tr>
+<th scope="row">
+<p> 你好吗 </p>
+</tr>
+</tbody>
+     </table>
+	 
+<table class="table" style="width:100%">
+     <thead class="thead-dark">
+     <tr>
+       <th scope="col" style="width:100%">PINYIN: </th>
+     </tr>
+     </thead>
+     <tbody>
+<tr>
+<th scope="row">
+<p> nǐ hǎo ma </p>
+</tr>
+</tbody>
+     </table>
+	 
+<table class="table" style="width:100%">
+     <thead class="thead-dark">
+     <tr>
+       <th scope="col" style="width:5%">VOCABULARY:</th>
+       <th scope="col" style="width:5%"> # </th>
+       <th scope="col" style="width:10%"> Words </th>
+       <th scope="col" style="width:10%"> Pinyin </th>
+       <th scope="col"> Meaning </th>
+     </tr>
+     </thead>
+     <tbody>
+       <tr>
+         <td>  </td>
+         <th scope="row">1</th>
+		 <td> 你 </td>
+         <td> nǐ</td>
+         <td> ['you (informal, as opposed to courteous 您[nin2])'] </td>
+       </tr>
+	          <tr>
+         <td>  </td>
+         <th scope="row">2</th>
+		 <td> 你好 </td>
+         <td> nǐ hǎo</td>
+         <td> ['Hello!', 'Hi!', 'How are you?'] </td>
+       </tr>
+	          <tr>
+         <td>  </td>
+         <th scope="row">3</th>
+		 <td> 好 </td>
+         <td> hǎo</td>
+         <td> ['to be fond of', 'to have a tendency to', 'to be prone to'] </td>
+       </tr>
+	          <tr>
+         <td>  </td>
+         <th scope="row">4</th>
+		 <td> 吗 </td>
+         <td> ma</td>
+         <td> ['(question particle for "yes-no" questions)'] </td>
+       </tr>
+     </tbody>
+     </table>
+
+ </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info btn-lg btn-block" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <table class="table" style="width:100%">
@@ -27,20 +143,19 @@
 	  <form action="/translation" method="POST">
  <tr>
  <th scope="row">
-              <textarea name="text" rows="10" cols="100%" placeholder="key" autocomplete="off" required maxlength="1500"></textarea>
+              <textarea name="text" rows="10" cols="100%" placeholder="MAX: 1500 words" autocomplete="off" required maxlength="1500"></textarea>
 </th>
  </tr>
  </tbody>
      </table>
+
 <div class="float-right">
               <button type="button" class="btn btn-lg btn-info" data-toggle="modal" data-target="#info">INFO</button>
               <button class="btn btn-lg btn-warning" type="submit">Translate</button>
  </div>
           </form>
 
-
-
-
+</br></br>
 
 <table class="table" style="width:100%">
      <thead class="thead-dark">

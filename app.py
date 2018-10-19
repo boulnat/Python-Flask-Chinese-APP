@@ -40,13 +40,25 @@ class pinyin:
 
     def getSoundPath(self, tableSound):
         return [os.path.join(self.path, sound + self.extension) for sound in tableSound]
-    
+    def getSound(self, sound):
+        return os.path.join(self.path, sound + self.extension)
+
 app = Flask(__name__)
 app.secret_key = os.urandom(12)
 
 @app.route("/")
 def main():
     return render_template("index.html")
+@app.route("/stroke", methods=['POST','GET'])
+def stroke():
+    sound=""
+    textPinyin=""
+    if request.method == 'POST':
+      text = request.form['text']
+      textPinyin = pi.get(text,format="numerical", delimiter=" ")
+      sound = myPinyin.getSound(textPinyin)
+      print(str(sound))
+    return render_template('stroke.html', sound=sound, textPinyin=textPinyin, text=text)
 
 @app.route("/translation", methods=['POST','GET'])
 def translation():

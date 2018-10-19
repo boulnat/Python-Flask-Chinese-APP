@@ -1,16 +1,18 @@
-<!DOCTYPE html>
 <html lang="en">
- 
+
 <head>
     <title>Python Flask Bucket List App</title>
- 
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
-</head>
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@1.1/dist/hanzi-writer.min.js"></script>
+
+</head>
 <body class="bg-dark">
   <div class="container bg-light">
     {% include "header.html" %}
@@ -54,7 +56,7 @@
         <table class="table" style="width:100%">
           <thead class="thead-dark">
             <tr>
-<th scope="col" style="width:2%"> # </th>
+ <th scope="col" style="width:2%"> # </th>
 <th scope="col" style="width:10%"> Sound </th>
               <th scope="col" style="width:88%"> Answer </th>
             </tr>
@@ -82,39 +84,98 @@
     </div>
   </div>
 </div>
+
+
 <table class="table" style="width:100%">
      <thead class="thead-dark">
      <tr>
-       <th scope="col" style="width:2%"> # </th>
-       <th scope="col" style="width:10%"> Sound </th>
        <th scope="col" style="width:88%"> Answer </th>
      </tr>
      </thead>
      <tbody>
-    <form action="/initiales" method="POST">
-       {% for i in range(valeur|length) %}
+    <form action="/stroke" method="POST">
        <tr>
-         <th scope="row">{{ loop.index }}</th>
          <td>
-           <audio controls >
-             <source src="{{ musicFiles[i] }}" type="audio/mp3"/>
-           </audio>
-         </td>
-         <td>
-           <label for={{ valeur[i] }} class="sr-only">{{ valeur[i] }}</label>
-<input type="text" name={{ valeur[i] }} class="form-control" placeholder="....">
+           <label for="text" class="sr-only">text</label>
+           <input type="text" name="text" class="form-control" placeholder="...">
         </td>
+<tr>
+<td>
+{{ textPinyin }}
+</tr>
+</td>
+
+
+<tr>
+<td>
+
+<div id="target"></div>
+<script>
+function renderFanningStrokes(target, strokes) {
+  var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.style.width = '75px';
+  svg.style.height = '75px';
+  svg.style.border = '1px solid #EEE'
+  svg.style.marginRight = '3px'
+  target.appendChild(svg);
+  var group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+
+  // set the transform property on the g element so the character renders at 75x75
+  var transformData = HanziWriter.getScalingTransform(75, 75);
+  group.setAttributeNS(null, 'transform', transformData.transform);
+  svg.appendChild(group);
+
+  strokes.forEach(function(strokePath) {
+    var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttributeNS(null, 'd', strokePath);
+    // style the character paths
+    path.style.fill = '#555';
+    group.appendChild(path);
+  });
+}
+HanziWriter.loadCharacterData({{ text|tojson }}).then(function(charData) {
+  var target = document.getElementById('target');
+  for (var i = 0; i < charData.strokes.length; i++) {
+    var strokesPortion = charData.strokes.slice(0, i + 1);
+    renderFanningStrokes(target, strokesPortion);
+  }
+});
+</script>
+
+</td>
+</tr>
+<tr>
+<td>
+<audio controls >
+  <source src="{{ sound }}" type="audio/mp3"/>
+</audio>
+</td>
        </tr>
-      {%- endfor %}
      </tbody>
      </table>
-     <div class="float-right">
+
+ <div class="float-right">
        <button type="button" class="btn btn-lg btn-info" data-toggle="modal" data-target="#info">INFO</button>
- <button class="btn btn-lg btn-warning" type="submit">Validate</button>
+<button class="btn btn-lg btn-warning" type="submit">Validate</button>
      </div>
 
 </form>
 
-  </div>
+
+
+
+
+
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+

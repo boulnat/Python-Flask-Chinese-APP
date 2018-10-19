@@ -3,33 +3,163 @@
  
 <head>
     <title>Python Flask Bucket List App</title>
- 
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
- 
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
- 
- 
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 
-<body>
-    <div class="container">
-        {% include "header.html" %} 
-        <div class="jumbotron">
-                <form class="from-signin" action="/initiales" method="POST">
-				
-				{% for i in range(valeur|length) %}
-					<audio controls >
-						<source src="{{ musicFiles[i] }}" type="audio/mp3"/>
-					</audio>
-					<label for={{ valeur[i] }} class="sr-only">{{ valeur[i] }}</label>
-					<input type="text" name={{ valeur[i] }} class="form-control" placeholder={% if "zh" in valeur[i] or "sh" in valeur[i] or "ch" in valeur[i] %} {{ valeur[i][2:] }} {% else %} {{ valeur[i][1:] }} {% endif %}>
-					</br>
-				{% endfor %}
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Validate</button>
-                </form>
-            <p class="lead"></p>
-            </p>
-        </div>
+<body class="bg-dark">
+  <div class="container bg-light">
+    {% include "header.html" %}
+<!-- Button trigger modal -->
+<!-- Modal -->
+</br>
+<div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="info" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="info">Initiales</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Your goal is to find the inital of the word based on the sound you will hear:</p>
+        <p>The initiale have been remove and it's your job to find it back after hearing the sound fill in the answer</p>
+        <p>example: sound plays is jiào, the finale and tons of the words are iao4, you need to answer by jiao4</p>
+        <p>Hint: Tons - / V \</p>
+        <table class="table" style="width:100%">
+          <tbody>
+            <tr>
+	      <td>jiao1</td>
+	      <td> jiāo</td>
+	    </tr>
+	    <tr>
+	      <td>jiao2</td>
+	      <td> jiáo</td>
+	    </tr>
+	    <tr>
+	      <td>jiao3</td>
+	      <td> jiǎo</td>
+	    </tr>
+	    <tr>
+	      <td>jiao4</td>
+	      <td> jiào</td>
+	    </tr>
+	  </tbody>
+	</table>
+        <table class="table" style="width:100%">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" style="width:2%"> # </th>
+              <th scope="col" style="width:10%"> Sound </th>
+              <th scope="col" style="width:88%"> Answer </th>
+            </tr>
+          </thead>
+        <tbody>
+        <tr>
+        <th scope="row">1</th>
+              <td>
+                <audio controls >
+                  <source src="../static/music/jiao4.mp3" type="audio/mp3"/>
+                </audio>
+              </td>
+              <td>
+                <label class="sr-only">iao4</label>
+                <input type="text" name="jiao4" class="form-control" placeholder="iao4">
+              </td>
+        </tr>
+     </tbody>
+     </table>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info btn-lg btn-block" data-dismiss="modal">Close</button>
+      </div>
     </div>
+  </div>
+</div>
+<!--
+<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Link with href
+  </a>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+
+<p>Your goal is to find the inital of the word based on the sound you will hear:</p>
+        <p>The initiale have been remove and it's your job to find it back after hearing the sound fill in the answer</p>
+        <p>example: sound plays is jiào, the finale and tons of the words are iao4, you need to answer by jiao4</p>
+        <p>Hint: Tons - / V \</p>
+        <table class="table" style="width:100%">
+          <tbody>
+            <tr>
+              <td>jiao1</td>
+              <td> jiāo</td>
+            </tr>
+            <tr>
+              <td>jiao2</td>
+              <td> jiáo</td>
+            </tr>
+            <tr>
+              <td>jiao3</td>
+              <td> jiǎo</td>
+            </tr>
+            <tr>
+              <td>jiao4</td>
+              <td> jiào</td>
+            </tr>
+            <tr>
+              <td><audio controls > <source src="#"/> </audio></td>
+              <td>
+                <label class="sr-only">iao4</label>
+                <input type="text" name="jiao4" class="form-control" placeholder="jiao4">
+              </td>
+              </tr>
+          </tbody>
+        </table>
+
+
+  </div>
+</div>
+
+-->
+
+<table class="table" style="width:100%">
+     <thead class="thead-dark">
+     <tr>
+       <th scope="col" style="width:2%"> # </th>
+       <th scope="col" style="width:10%"> Sound </th>
+       <th scope="col" style="width:88%"> Answer </th>
+     </tr>
+     </thead>
+     <tbody>
+    <form action="/initiales" method="POST">
+       {% for i in range(valeur|length) %}
+       <tr>
+         <th scope="row">{{ loop.index }}</th>
+         <td> 
+           <audio controls >
+             <source src="{{ musicFiles[i] }}" type="audio/mp3"/>
+           </audio>
+         </td>
+         <td> 
+           <label for={{ valeur[i] }} class="sr-only">{{ valeur[i] }}</label>
+           <input type="text" name={{ valeur[i] }} class="form-control" placeholder={% if "zh" in valeur[i] or "sh" in valeur[i] or "ch" in valeur[i] %} {{ valeur[i][2:] }} {% else %} {{ valeur[i][1:] }} {% endif %} required>
+         </td>
+       </tr>
+      {%- endfor %}
+     </tbody>
+     </table>
+     <div class="float-right">
+       <button type="button" class="btn btn-lg btn-info" data-toggle="modal" data-target="#info">INFO</button>
+       <button class="btn btn-lg btn-warning" type="submit">Validate</button>
+     </div>
+
+</form>
+
+  </div>
 </body>
 </html>
+
+

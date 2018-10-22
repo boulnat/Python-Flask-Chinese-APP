@@ -53,6 +53,7 @@ def main():
 def stroke():
     sound=""
     textPinyin=""
+    text = ""
     if request.method == 'POST':
       text = request.form['text']
       textPinyin = pi.get(text,format="numerical", delimiter=" ")
